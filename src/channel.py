@@ -37,7 +37,7 @@ class Channel:
     def get_service(cls):
         return cls.youtube
 
-    def to_json(file_name):
+    def to_json(self, file_name):
         state = {}
         state["title"] = self.title
         state["description"] = self.description
@@ -46,7 +46,6 @@ class Channel:
         state["video_count"] = self.video_count
         state["view_count"] = self.view_count
 
-        print(json.dumps(dict_to_print, indent=2, ensure_ascii=False))
         with open("file.name", "wt") as f:
-            pickle.dump(self.state, f)
+            json.dumps(dict_to_print, indent=2, ensure_ascii=False)
 
