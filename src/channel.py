@@ -7,7 +7,7 @@ from googleapiclient.discovery import build
 
 class Channel:
     """Класс для ютуб-канала"""
-    api_key: str = os.getenv('API_KEY_YOU_TUBE')
+    api_key: str = os.getenv('API_KEY')
     youtube = build('youtube', 'v3', developerKey=api_key)
     channel_id = 'UC1eFXmJNkjITxPFWTy6RsWg'
 
@@ -46,6 +46,7 @@ class Channel:
         state["video_count"] = self.video_count
         state["view_count"] = self.view_count
 
-        with open("file.name", "wt") as f:
-            json.dumps(dict_to_print, indent=2, ensure_ascii=False)
+        with open(file_name, "wt") as f:
+            json.dump(state, f, indent=2, ensure_ascii=False)
+
 
