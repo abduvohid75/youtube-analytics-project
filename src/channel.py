@@ -27,6 +27,8 @@ class Channel:
 
 
 
+
+
     def print_info(self) -> None:
         self.channel = self.youtube.channels().list(id=self.channel_id, part='snippet, statistics').execute()
         self.title = self.channel[1]['snippet']['title']
@@ -46,7 +48,32 @@ class Channel:
         state["video_count"] = self.video_count
         state["view_count"] = self.view_count
 
+
         with open(file_name, "wt") as f:
             json.dump(state, f, indent=2, ensure_ascii=False)
+
+        return vdud
+
+
+    def __str__(self):
+        return f"{self.title} {self.url}"
+
+    @property
+    def __add__(self, other):
+        return self.subscriber_count, other.subscriber_count
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
