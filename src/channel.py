@@ -5,6 +5,7 @@ import pickle
 import requests
 from googleapiclient.discovery import build
 
+
 class Channel:
     """Класс для ютуб-канала"""
     api_key: str = os.getenv('API_KEY')
@@ -22,12 +23,6 @@ class Channel:
         self.subscriber_count = self.channel['items'][0]['statistics']['subscriberCount']
         self.video_count = self.channel['items'][0]['statistics']['videoCount']
         self.view_count = self.channel['items'][0]['statistics']['viewCount']
-
-
-
-
-
-
 
     def print_info(self) -> None:
         self.channel = self.youtube.channels().list(id=self.channel_id, part='snippet, statistics').execute()
@@ -48,32 +43,29 @@ class Channel:
         state["video_count"] = self.video_count
         state["view_count"] = self.view_count
 
-
         with open(file_name, "wt") as f:
             json.dump(state, f, indent=2, ensure_ascii=False)
-
-        return vdud
-
 
     def __str__(self):
         return f"{self.title} {self.url}"
 
-    @property
     def __add__(self, other):
-        return self.subscriber_count, other.subscriber_count
+        return int(self.subscriber_count) + int(other.subscriber_count)
 
+    def __sub__(self, other):
+        return int(self.subscriber_count) - int(other.subscriber_count)
 
+    def __eq__(self, other):
+        return int(self.subscriber_count) == int(other.subscriber_count)
 
+    def __gt__(self, other):
+        return int(self.subscriber_count) > int(other.subscriber_count)
 
+    def __ge__(self, other):
+        return int(self.subscriber_count) >= int(other.subscriber_count)
 
+    def __lt__(self, other):
+        return int(self.subscriber_count) < int(other.subscriber_count)
 
-
-
-
-
-
-
-
-
-
-
+    def __le__(self, other):
+        return int(self.subscriber_count) <= int(other.subscriber_count)
