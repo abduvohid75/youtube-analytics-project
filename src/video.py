@@ -17,6 +17,5 @@ class Video:
 class PLVideo(Video):
     def __init__(self, video_id, channel_id):
         super().__init__(video_id)
-        self.channel_id = channel_id
         self.channel_id = self.video['items'][0]['snippet']['channelId']
 
