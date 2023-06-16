@@ -6,6 +6,7 @@ if __name__ == '__main__':
     redactsiya = Channel('UC1eFXmJNkjITxPFWTy6RsWg')
 
 
+
     # Используем различные магические методы
     print(vdud)  # 'вДудь (https://www.youtube.com/channel/UCMCgOm8GZkHp8zJ6l7_hIuA)'
     print(vdud + redactsiya)  # 13970000
